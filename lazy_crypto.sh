@@ -1,6 +1,5 @@
 #!/bin/bash
-set -x
-####################################################
+###################################################
 # Lazy Crypto
 # Written By: Captain Bossman
 # 
@@ -16,7 +15,8 @@ set -x
 ####################################################
 set -u
 set -e
- 
+# set -x  # Un-comment to show debug output - SHOWS PASSWORD ON SCREEN
+
 # Encryption algorhythm to use. 
 # Check 'openssl enc help' for options. 
  
