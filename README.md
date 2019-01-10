@@ -4,6 +4,10 @@ Use openssl to encrypt/decrypt files for quick seceurity needs
 # Background
 This was originally found on this site:
     https://www.dslreports.com/shownews/Encrypt-files-quickly-with-OpenSSL-87586
+It was referenced from this post:
+   https://superuser.com/questions/231868/encrypting-a-single-file-with-password-and-keyfile
+And this response:
+    https://superuser.com/a/301468
 
 The code as downloaded January, 2019 contained this note:
 ```
