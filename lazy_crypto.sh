@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 ####################################################
 # Lazy Crypto
 # Written By: Captain Bossman
@@ -13,6 +14,8 @@
 # Please direct any support requests to 
 # http://www.google.com
 ####################################################
+set -u
+set -e
  
 # Encryption algorhythm to use. 
 # Check 'openssl enc help' for options. 
@@ -21,28 +24,28 @@ algo="aes-256-cbc"
  
 # Panic if we don't have the right number of 
 # arguments 
+set +u
 if [ "$2" == "" ]; then 
-&#9;
-&#9;    echo "Usage: $0 [ encrypt|decrypt ] filename"
-&#9;    exit 2 
+    echo "Usage: $0 [ encrypt|decrypt ] filename"
+    exit 2 
 else
-  
-    &#9;    echo -n "Passphrase: " 
-&#9;    stty -echo   
-&#9;    read passwd
-&#9;    stty echo
-&#9;    echo
+    set -u
+    echo -n "Passphrase: " 
+    stty -echo   
+    read passwd
+    stty echo
+    echo
  
-case "$1" in 
-&#9;encrypt)
-&#9;    openssl enc -$algo -e -in $2 -out $2.enc -pass pass:$passwd; 
-&#9;;;
-&#9;decrypt)
-&#9;    openssl enc -$algo -d -in $2 -out `echo $2 | sed -e 's/\.enc//'` -pass pass:$passwd;
-&#9;;;
- 
-&#9;*)
-&#9;    echo "Usage: $0 [ encrypt|decrypt ] filename";
-&#9;;;
-esac
+    case "$1" in 
+        encrypt)
+            openssl enc -$algo -e -in $2 -out $2.enc -pass pass:"${passwd}"; 
+        ;;
+        decrypt)
+            openssl enc -$algo -d -in $2 -out `echo $2 | sed -e 's/\.enc//'` -pass pass:"${passwd}";
+        ;;
+
+        *)
+            echo "Usage: $0 [ encrypt|decrypt ] filename";
+        ;;
+    esac
 fi
