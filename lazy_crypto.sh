@@ -38,10 +38,10 @@ else
  
     case "$1" in 
         encrypt)
-            openssl enc -$algo -e -in $2 -out $2.enc -pass pass:"${passwd}"; 
+            openssl enc -$algo -e -in $2 -base64 -out $2.enc -pass pass:"${passwd}"; 
         ;;
         decrypt)
-            openssl enc -$algo -d -in $2 -out `echo $2 | sed -e 's/\.enc//'` -pass pass:"${passwd}";
+            openssl enc -$algo -d -in $2 -base64 -out `echo $2 | sed -e 's/\.enc//'` -pass pass:"${passwd}";
         ;;
 
         *)
